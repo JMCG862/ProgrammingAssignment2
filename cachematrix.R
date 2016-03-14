@@ -14,14 +14,14 @@ list(getmatrix = getmatrix, setmatrix = setmatrix)
 
 
 ## This functions searches for the value of m, 
-## if there is no value for m, then it calculates it with the solve() and stores it in m trough the MakeCacheMatrix function
+## if there is no value for matrix.inverse, then it calculates it with the solve() and stores it in m trough the MakeCacheMatrix function
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
-  if(!is.null(m)){
+  if(!is.null(x$matrix.inverse)){
     message("getting cached data")
-    return(m)
+    return(x$matrix.inverse)
   }
-  data <- x$get()
-  m <- solve(data)
-  x$setmatrix(m) m
-
+  data <- x$getmatrix()
+  matrix.inverse <- solve(data)
+  x$matrix.inverse <- matrix.inverse
+}
